@@ -1,0 +1,19 @@
+import { MethodHandler } from "./methodHandler";
+/**
+ * @wahtItDoes holds all information about the controller
+ */
+export declare class ControllerHandler {
+    /**
+     * the route assigned to the controller using the @Route decorator
+     */
+    route: string;
+    /**
+     * name of the controller
+     */
+    controller: string;
+    /**
+     * MethodHandler look methodHandler.ts file
+     */
+    methodsHandlers: MethodHandler[];
+    isRest: boolean;
+}
