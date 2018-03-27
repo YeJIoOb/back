@@ -3,14 +3,14 @@ import { Container } from "./container";
 import { HttpRequestMethod } from "./_http/http";
 import { splitCamelCase } from "./utils/utils";
 export { HttpRequestMethod, Request, Response } from "./_http/http";
-export {  Controller, Get, Post, Put, Delete, Route, RequestBody, ResponseBody } from "./decorators/decorators";
+export { Controller, Get, Post, Put, Delete, Route, RequestBody, ResponseBody } from "./decorators/decorators";
 export { Service } from "./decorators/Service";
 export { BackApplication } from "./BackApplication";
 
 export class Back {
     static express = express;
     static Container = Container;
-    static configs: {use: any[], set: any};
+    static configs: { use: any[], set: any } = { use: [], set: {} };
 
     static prepare(app) {
         Back.applyConfigs(app);
@@ -34,7 +34,7 @@ export class Back {
                     httpRequestMethod = "put";
                 }
                 else {
-                     httpRequestMethod = "delete";
+                    httpRequestMethod = "delete";
                 }
 
                 router[httpRequestMethod].call(router, methodHandler.route, (req, res, next) => {
@@ -46,7 +46,7 @@ export class Back {
         }
     }
     // for testing
-    static reset () {
+    static reset() {
         Back.Container.instances = [];
         Back.Container.controllerHandlers = [];
         Back.Container.components = [];
@@ -56,8 +56,8 @@ export class Back {
         Back
             .configs
             .use
-            .forEach( middleware => {
-               app.use(middleware);
+            .forEach(middleware => {
+                app.use(middleware);
             });
         for (let setting in Back.configs.set) {
             let _setting = splitCamelCase(setting).toLocaleLowerCase();

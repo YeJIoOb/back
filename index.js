@@ -71,4 +71,5 @@ class Back {
 }
 Back.express = express;
 Back.Container = container_1.Container;
+Back.configs = { use: [], set: {} };
 exports.Back = Back;
